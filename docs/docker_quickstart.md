@@ -77,9 +77,9 @@ docker compose up -d
 
 #### Accessing the UI
 
-If you've selected to enable FreqUI in the `new-config` step, you will have freqUI available at port `localhost:8080`.
+If you've selected to enable FreqUI in the `new-config` step, you will have freqUI available at port `localhost:8000`.
 
-You can now access the UI by typing localhost:8080 in your browser.
+You can now access the UI by typing localhost:8000 in your browser.
 
 ??? Note "UI Access on a remote server"
     If you're running on a VPS, you should consider using either a ssh tunnel, or setup a VPN (openVPN, wireguard) to connect to your bot.

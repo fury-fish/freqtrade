@@ -14,7 +14,7 @@ Sample configuration:
     "api_server": {
         "enabled": true,
         "listen_ip_address": "127.0.0.1",
-        "listen_port": 8080,
+        "listen_port": 8000,
         "verbosity": "error",
         "enable_openapi": false,
         "jwt_secret_key": "somethingrandom",
@@ -33,7 +33,7 @@ Sample configuration:
     This will ensure that freqUI is not directly exposed to the internet, which is not recommended for security reasons (freqUI does not support https out of the box).
     Setup of these tools is not part of this tutorial, however many good tutorials can be found on the internet.
 
-You can then access the API by going to `http://127.0.0.1:8080/api/v1/ping` in a browser to check if the API is running correctly.
+You can then access the API by going to `http://127.0.0.1:8000/api/v1/ping` in a browser to check if the API is running correctly.
 This should return the response:
 
 ``` output
@@ -66,7 +66,7 @@ If you run your bot using docker, you'll need to have the bot listen to incoming
     "api_server": {
         "enabled": true,
         "listen_ip_address": "0.0.0.0",
-        "listen_port": 8080,
+        "listen_port": 8000,
         "username": "Freqtrader",
         "password": "SuperSecret1!",
         //...
@@ -77,11 +77,11 @@ Make sure that the following 2 lines are available in your docker-compose file:
 
 ```yml
     ports:
-      - "127.0.0.1:8080:8080"
+      - "127.0.0.1:8000:8000"
 ```
 
 !!! Danger "Security warning"
-    By using `"8080:8080"` (or `"0.0.0.0:8080:8080"`) in the docker port mapping, the API will be available to everyone connecting to the server under the correct port, so others may be able to control your bot.
+    By using `"8000:8000"` (or `"0.0.0.0:8000:8000"`) in the docker port mapping, the API will be available to everyone connecting to the server under the correct port, so others may be able to control your bot.
     This **may** be safe if you're running the bot in a secure environment (like your home network), but it's not recommended to expose the API to the internet.
 
 ## Rest API
@@ -98,7 +98,7 @@ This module is designed to be lightweight, and only depends on the `requests` an
 freqtrade-client <command> [optional parameters]
 ```
 
-By default, the script assumes `127.0.0.1` (localhost) and port `8080` to be used, however you can specify a configuration file to override this behaviour.
+By default, the script assumes `127.0.0.1` (localhost) and port `8000` to be used, however you can specify a configuration file to override this behaviour.
 
 #### Minimalistic client config
 
@@ -107,7 +107,7 @@ By default, the script assumes `127.0.0.1` (localhost) and port `8080` to be use
     "api_server": {
         "enabled": true,
         "listen_ip_address": "0.0.0.0",
-        "listen_port": 8080,
+        "listen_port": 8000,
         "username": "Freqtrader",
         "password": "SuperSecret1!",
         //...
@@ -164,7 +164,7 @@ freqtrade-client help
 ### Available endpoints
 
 If you wish to call the REST API manually via another route, e.g. directly via `curl`, the table below shows the relevant URL endpoints and parameters.
-All endpoints in the below table need to be prefixed with the base URL of the API, e.g. `http://127.0.0.1:8080/api/v1/` - so the command becomes `http://127.0.0.1:8080/api/v1/<command>`.
+All endpoints in the below table need to be prefixed with the base URL of the API, e.g. `http://127.0.0.1:8000/api/v1/` - so the command becomes `http://127.0.0.1:8000/api/v1/<command>`.
 
 |  Endpoint | Method | Description / Parameters |
 |-----------|--------|--------------------------|
@@ -224,7 +224,7 @@ This can be used to consume real-time data from your bot, such as entry/exit fil
 
 This is also used to setup [Producer/Consumer mode](producer-consumer.md) in Freqtrade.
 
-Assuming your rest API is set to `127.0.0.1` on port `8080`, the endpoint is available at `http://localhost:8080/api/v1/message/ws`.
+Assuming your rest API is set to `127.0.0.1` on port `8000`, the endpoint is available at `http://localhost:8000/api/v1/message/ws`.
 
 To access the websocket endpoint, the `ws_token` is required as a query parameter in the endpoint URL.
 
@@ -242,7 +242,7 @@ You would then add that token under `ws_token` in your `api_server` config. Like
 "api_server": {
     "enabled": true,
     "listen_ip_address": "127.0.0.1",
-    "listen_port": 8080,
+    "listen_port": 8000,
     "verbosity": "error",
     "enable_openapi": false,
     "jwt_secret_key": "somethingrandom",
@@ -253,7 +253,7 @@ You would then add that token under `ws_token` in your `api_server` config. Like
 },
 ```
 
-You can now connect to the endpoint at `http://localhost:8080/api/v1/message/ws?token=hZ-y58LXyX_HZ8O1cJzVyN6ePWrLpNQv4Q`.
+You can now connect to the endpoint at `http://localhost:8000/api/v1/message/ws?token=hZ-y58LXyX_HZ8O1cJzVyN6ePWrLpNQv4Q`.
 
 !!! Danger "Reuse of example tokens"
     Please do not use the above example token. To make sure you are secure, generate a completely new token.

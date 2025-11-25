@@ -3,7 +3,7 @@
     "image": "ghcr.io/freqtrade/freqtrade-devcontainer:latest",
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
     "forwardPorts": [
-        8080
+        8000
     ],
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/freqtrade,type=bind,consistency=cached",
     // Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.

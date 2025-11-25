@@ -84,11 +84,27 @@ Please refer to the [Docker Quickstart documentation](https://www.freqtrade.io/e
 
 For further (native) installation methods, please refer to the [Installation documentation page](https://www.freqtrade.io/en/stable/installation/).
 
+## Local Docker quickstart (macOS)
+
+The following steps were executed on 2025-11-24 to validate the Docker workflow on macOS (Docker Desktop):
+
+1. `docker compose pull`
+2. `docker compose run --rm freqtrade create-userdir --userdir user_data`
+3. Copied `config_examples/config_binance.example.json` to `user_data/config.json` (interactive `new-config` is not available in non-TTY shells).
+4. `docker compose up -d` followed by `docker compose ps` and `docker compose logs -n 20` to confirm the bot reached the `RUNNING` state (freqUI exposed on `localhost:8000` when enabled).
+5. `docker compose down` to stop the stack after verification.
+
+Refer to the official quickstart for enabling freqUI and customizing the configuration before trading with real funds.
+
+## Native setup prerequisites (macOS)
+
+Running `./setup.sh` requires a local Python interpreter at version 3.11 or newer. If you encounter `No usable python found`, install the correct version (for example via Homebrew `brew install python@3.11`) and ensure `python3` resolves to ≥ 3.11 (`/opt/homebrew/bin/python3.11` on Apple Silicon). Once available, rerun `./setup.sh`.
+
 ## Basic Usage
 
 ### Bot commands
 
-```
+```text
 usage: freqtrade [-h] [-V]
                  {trade,create-userdir,new-config,show-config,new-strategy,download-data,convert-data,convert-trade-data,trades-to-ohlcv,list-data,backtesting,backtesting-show,backtesting-analysis,edge,hyperopt,hyperopt-list,hyperopt-show,list-exchanges,list-markets,list-pairs,list-strategies,list-hyperoptloss,list-freqaimodels,list-timeframes,show-trades,test-pairlist,convert-db,install-ui,plot-dataframe,plot-profit,webserver,strategy-updater,lookahead-analysis,recursive-analysis}
                  ...
@@ -157,7 +173,6 @@ Telegram is not mandatory. However, this is a great way to control your bot. Mor
 - `/help`: Show help message.
 - `/version`: Show version.
 
-
 ## Development branches
 
 The project is currently setup in two main branches:
@@ -205,7 +220,7 @@ to understand the requirements before sending your pull-requests.
 Coding is not a necessity to contribute - maybe start with improving the documentation?
 Issues labeled [good first issue](https://github.com/freqtrade/freqtrade/labels/good%20first%20issue) can be good first contributions, and will help get you familiar with the codebase.
 
-**Note** before starting any major new feature work, *please open an issue describing what you are planning to do* or talk to us on [discord](https://discord.gg/p7nuUNVfP7) (please use the #dev channel for this). This will ensure that interested parties can give valuable feedback on the feature, and let others know that you are working on it.
+**Note** before starting any major new feature work, _please open an issue describing what you are planning to do_ or talk to us on [discord](https://discord.gg/p7nuUNVfP7) (please use the #dev channel for this). This will ensure that interested parties can give valuable feedback on the feature, and let others know that you are working on it.
 
 **Important:** Always create your PR against the `develop` branch, not `stable`.
 
