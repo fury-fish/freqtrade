@@ -47,6 +47,8 @@ class UptrendFollowStrategy(IStrategy):
     # Check the documentation or the Sample strategy to get the latest version.
     INTERFACE_VERSION = 3
 
+    max_open_trades = 10
+
     # Không sử dụng ROI cố định, mà dựa vào Trailing Stop Loss/Take Profit
     minimal_roi = {
         "0": 10.0  # ROI cực cao để TSL (Trailing Stop Loss) làm việc thay thế
@@ -66,8 +68,8 @@ class UptrendFollowStrategy(IStrategy):
     # Chỉ kích hoạt TSL khi đạt ngưỡng lãi (trailing_stop_positive)
     trailing_only_offset_is_reached = True
 
-    # Khung thời gian tối ưu: 1h để bắt sóng lớn
-    timeframe = "1h"
+    # Khung thời gian tối ưu: 5m
+    timeframe = "5m"
 
     # Số lượng nến khởi động
     startup_candle_count: int = 200
